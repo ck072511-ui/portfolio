@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saurav Kumar | Data Analyst Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070816;
+  --bg2:#0f1026;
+  --card:#12142d;
+  --text:#f5f7ff;
+  --muted:#b0b7d1;
+  --pink:#ff4fd8;
+  --cyan:#42e8ff;
+  --amber:#ffbe3b;
+  --indigo:#6c63ff;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 10px 40px rgba(0,0,0,.45);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#090b18;
+}
+
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(var(--pink),var(--cyan));
+  border-radius:20px;
+}
+
+/* Canvas */
+
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+}
+
+/* Noise */
+
+.noise{
+  position:fixed;
+  inset:0;
+  background-image:
+  radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:3px 3px;
+  opacity:.15;
+  pointer-events:none;
+  z-index:-2;
+}
+
+/* Loading Screen */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:#050510;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+  animation:fadeLoader .9s ease forwards;
+  animation-delay:2s;
+}
+
+.loader h1{
+  font-family:'Syne',sans-serif;
+  font-size:4rem;
+  background:linear-gradient(90deg,var(--pink),var(--cyan),var(--amber));
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:20px;
+}
+
+.loader-bar{
+  width:240px;
+  height:6px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#1f213d;
+}
+
+.loader-bar span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  animation:load 2s linear forwards;
+}
+
+@keyframes load{
+  to{width:100%;}
+}
+
+@keyframes fadeLoader{
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
+}
+
+/* Cursor */
+
+.cursor{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  position:fixed;
+  background:var(--cyan);
+  pointer-events:none;
+  mix-blend-mode:difference;
+  z-index:99999;
+  transform:translate(-50%,-50%);
+}
+
+.cursor-ring{
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:all .08s linear;
+}
+
+/* Layout */
+
+.container{
+  width:min(1180px,90%);
+  margin:auto;
+}
+
+section{
+  padding:110px 0;
+}
+
+/* Navbar */
+
+nav{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1150px,92%);
+  z-index:1000;
+  backdrop-filter:blur(18px);
+  background:rgba(15,16,38,.45);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 28px;
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-size:1.4rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
+  color:var(--text);
+  text-decoration:none;
+  position:relative;
+  font-size:.96rem;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  transition:.35s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* Hero */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:60px;
+  align-items:center;
+}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(3rem,8vw,6rem);
+  line-height:1;
+  margin-bottom:18px;
+  position:relative;
+}
+
+.hero-roles{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.hero-roles span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.7rem 1rem;
+  border-radius:999px;
+  background:rgba(66,232,255,.12);
+  color:var(--cyan);
+  font-size:.95rem;
+  font-weight:600;
+  border:1px solid rgba(66,232,255,.2);
+}
+
+.shimmer{
+  background:linear-gradient(
+    90deg,
+    #fff 0%,
+    var(--cyan) 30%,
+    var(--pink) 60%,
+    #fff 100%
+  );
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:shimmer 4s linear infinite;
+}
+
+@keyframes shimmer{
+  to{
+    background-position:200% center;
+  }
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+.btn{
+  padding:14px 26px;
+  border-radius:14px;
+  border:none;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-primary{
+  background:linear-gradient(90deg,var(--pink),var(--indigo));
+}
+
+.btn-secondary{
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.04);
+}
+
+.btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 30px rgba(108,99,255,.3);
+}
+
+.profile-img{
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  border:5px solid var(--cyan);
+  box-shadow:0 0 40px rgba(66,232,255,.45);
+  object-fit:cover;
+  margin-bottom:25px;
+}
+
+/* Floating Card */
+
+.float-card{
+  position:relative;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+  padding:48px;
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+  animation:float 6s ease-in-out infinite;
+  transform-style:preserve-3d;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0px);}
+  50%{transform:translateY(-14px);}
+}
+
+.stat{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:18px 0;
+  padding-bottom:18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.stat h2{
+  font-size:2rem;
+  color:var(--cyan);
+}
+
+.stat span{
+  color:var(--muted);
+}
+
+/* Headings */
+
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:2.7rem;
+  margin-bottom:50px;
+  position:relative;
+}
+
+.section-title::after{
+  content:'';
+  width:120px;
+  height:4px;
+  border-radius:20px;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  position:absolute;
+  left:0;
+  bottom:-14px;
+}
+
+/* Skills */
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+}
+
+.skill{
+  margin-bottom:26px;
+}
+
+.skill-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.skill-bar{
+  height:12px;
+  background:#1c1f3b;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.skill-fill{
+  width:0;
+  height:100%;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  transition:1.6s ease;
+}
+
+.tech-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.chip{
+  padding:10px 18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:40px;
+  transition:.3s;
+}
+
+.chip:hover{
+  transform:translateY(-4px);
+  background:linear-gradient(90deg,var(--pink),var(--indigo));
+}
+
+/* Timeline */
+
+.timeline{
+  position:relative;
+  margin-left:20px;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:3px;
+  height:100%;
+  background:linear-gradient(var(--pink),var(--cyan));
+}
+
+.timeline-item{
+  position:relative;
+  padding-left:50px;
+  margin-bottom:50px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.timeline-item.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:-10px;
+  top:5px;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 20px var(--cyan);
+}
+
+.timeline-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  padding:28px;
+  border-radius:22px;
+  transition:.4s;
+}
+
+.timeline-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 35px rgba(66,232,255,.15);
+}
+
+.timeline-card h3{
+  margin-bottom:10px;
+}
+
+.timeline-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* Projects */
+
+.resume-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+}
+
+.resume-card{
+  padding:34px;
+  border-radius:24px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow);
+}
+
+.resume-card h3{
+  margin-bottom:18px;
+}
+
+.resume-card p,
+.resume-card li,
+.resume-item p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.resume-card ul{
+  margin:20px 0 26px;
+  padding-left:20px;
+}
+
+.resume-card li{
+  margin-bottom:12px;
+}
+
+.resume-item{
+  margin-bottom:22px;
+}
+
+.resume-item strong{
+  display:block;
+  margin-bottom:8px;
+  color:var(--text);
+}
+
+.project-card{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.05);
+  border-radius:24px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.45s;
+}
+
+.project-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+  );
+  transform:translateX(-100%);
+}
+
+.project-card:hover::before{
+  transform:translateX(100%);
+  transition:1s;
+}
+
+.project-card:hover{
+  transform:translateY(-10px);
+}
+
+.project-card h3{
+  margin:20px 0 12px;
+}
+
+.project-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.project-tags{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.project-tags span{
+  background:#1f2246;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+}
+
+/* Education */
+
+.edu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+}
+
+.edu-card{
+  padding:28px;
+  border-radius:22px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.edu-card h3{
+  margin-bottom:10px;
+}
+
+.edu-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+
+.badge{
+  background:linear-gradient(90deg,var(--pink),var(--indigo));
+  padding:10px 16px;
+  border-radius:30px;
+  font-size:.9rem;
+}
+
+/* Contact */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
+}
+
+.contact-card{
+  position:relative;
+  overflow:hidden;
+  display:block;
+  padding:28px;
+  border-radius:24px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  text-decoration:none;
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+
+.contact-card:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.14);
+}
+
+.contact-card h3{
+  margin-bottom:10px;
+}
+
+.contact-card p,
+.contact-card a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+.contact-icon{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+  border-radius:18px;
+  background:rgba(34,211,238,.15);
+  color:#38bdf8;
+}
+
+.contact-card h3{
+  color:#f8fafc;
+}
+
+.contact-card p{
+  word-break:break-all;
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  margin:50px auto 0;
+  position:relative;
+  background:linear-gradient(135deg,var(--pink),var(--cyan));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Syne',sans-serif;
+  font-size:2.2rem;
+  font-weight:800;
+}
+
+.avatar::before,
+.avatar::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  inset:-10px;
+  border:1px solid rgba(255,255,255,.25);
+  animation:ripple 3s linear infinite;
+}
+
+.avatar::after{
+  animation-delay:1.5s;
+}
+
+@keyframes ripple{
+  0%{
+    transform:scale(1);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1.45);
+    opacity:0;
+  }
+}
+
+/* Reveal */
+
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Footer */
+
+footer{
+  padding:40px 0;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+  .hero-grid,
+  .skills-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:140px;
+  }
+
+  .nav-links{
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .hero h1{
+    font-size:4rem;
+  }
+}
+
+@media(max-width:600px){
+
+  .nav-inner{
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .hero h1{
+    font-size:3rem;
+  }
+
+  section{
+    padding:80px 0;
+  }
+
+  .section-title{
+    font-size:2.1rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader">
+  <h1>SK</h1>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<canvas id="particles"></canvas>
+<div class="noise"></div>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Saurav Kumar</div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="about">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div>
+        <h1 class="shimmer">Saurav Kumar</h1>
+        <div class="hero-roles">
+          <span>Data Analyst</span>
+          <span>Data Scientist</span>
+          <span>Machine Learning Engineer</span>
+        </div>
+
+        <p>
+          Data Analyst with expertise in Python, SQL, Machine Learning,
+          and interactive data visualization. Passionate about transforming
+          raw data into actionable insights and building intelligent
+          predictive systems.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="float-card">
+        <img src="profile-photo.jpg" alt="Profile Photo" class="profile-img">
+        <div class="stat">
+          <div>
+            <h2>85%</h2>
+            <span>Churn Prediction Accuracy</span>
+          </div>
+          <div>📊</div>
+        </div>
+
+        <div class="stat">
+          <div>
+            <h2>0.82</h2>
+            <span>House Price R² Score</span>
+          </div>
+          <div>🏡</div>
+        </div>
+
+        <div class="stat">
+          <div>
+            <h2>6+</h2>
+            <span>Core Data Skills</span>
+          </div>
+          <div>🚀</div>
+        </div>
+
+        <div class="stat" style="border:none;">
+          <div>
+            <h2>2025</h2>
+            <span>Active Projects & ML Work</span>
+          </div>
+          <div>💡</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <div class="container">
+    <h2 class="section-title">Technical Skills</h2>
+
+    <div class="skills-grid">
+
+      <div>
+
+        <div class="skill">
+          <div class="skill-top">
+            <span>Python</span>
+            <span>92%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="92%"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-top">
+            <span>SQL</span>
+            <span>88%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="88%"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-top">
+            <span>Machine Learning</span>
+            <span>84%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="84%"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-top">
+            <span>Power BI & Tableau</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="80%"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tech-chips">
+        <div class="chip">Python</div>
+        <div class="chip">SQL</div>
+        <div class="chip">Pandas</div>
+        <div class="chip">NumPy</div>
+        <div class="chip">Scikit-learn</div>
+        <div class="chip">Matplotlib</div>
+        <div class="chip">Seaborn</div>
+        <div class="chip">Power BI</div>
+        <div class="chip">Tableau</div>
+        <div class="chip">Git</div>
+        <div class="chip">GitHub</div>
+        <div class="chip">Excel</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <h3>Data Analysis & Machine Learning Projects</h3>
+          <small>2025 – Present</small>
+
+          <p>
+            Analyzed datasets using Python and SQL to extract business insights,
+            performed EDA and preprocessing, built predictive machine learning
+            models, and created visualizations to communicate findings effectively.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="resume" class="reveal">
+  <div class="container">
+    <h2 class="section-title">Resume</h2>
+
+    <div class="resume-grid">
+      <div class="resume-card">
+        <h3>Professional Summary</h3>
+        <p>
+          Data Analyst with a strong foundation in Python, SQL, machine learning,
+          and business intelligence. Proven ability to translate complex datasets
+          into actionable insights, build predictive models, and deliver persuasive
+          visual storytelling.
+        </p>
+
+        <ul>
+          <li>5+ years of experience in analytics, reporting, and model development</li>
+          <li>Experienced with Python, Pandas, Scikit-learn, Power BI, and Tableau</li>
+          <li>Strong skills in data cleaning, feature engineering, and storytelling</li>
+          <li>Collaborative mindset and a focus on solving business problems</li>
+        </ul>
+
+        <a href="Saurav_Kumar%20(1).pdf" class="btn btn-primary" download>Download Resume</a>
+      </div>
+
+      <div class="resume-card">
+        <h3>Resume Highlights</h3>
+
+        <div class="resume-item">
+          <strong>Education</strong>
+          <p>M.Sc. Data Science — Lovely Professional University</p>
+        </div>
+
+        <div class="resume-item">
+          <strong>Key Skills</strong>
+          <p>Python, SQL, Machine Learning, Data Visualization, Dashboarding</p>
+        </div>
+
+        <div class="resume-item">
+          <strong>Tools & Technologies</strong>
+          <p>Pandas, NumPy, Matplotlib, Seaborn, Power BI, Tableau, Git, Excel</p>
+        </div>
+
+        <div class="resume-item">
+          <strong>Contact</strong>
+          <p>ck072511@gmail.com · +91 8252166766</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div style="font-size:2rem;">📉</div>
+
+        <h3>Customer Churn Prediction</h3>
+
+        <p>
+          Built an end-to-end classification model achieving 85% accuracy using
+          Logistic Regression and Decision Trees with feature engineering and tuning.
+        </p>
+
+        <div class="project-tags">
+          <span>Python</span>
+          <span>SQL</span>
+          <span>Scikit-learn</span>
+          <span>ML</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div style="font-size:2rem;">🏡</div>
+
+        <h3>House Price Prediction</h3>
+
+        <p>
+          Developed a regression model with R² score of 0.82 and visualized
+          housing trends using Matplotlib and Seaborn.
+        </p>
+
+        <div class="project-tags">
+          <span>Pandas</span>
+          <span>Regression</span>
+          <span>Visualization</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div style="font-size:2rem;">📊</div>
+
+        <h3>Interactive Dashboards</h3>
+
+        <p>
+          Created insightful dashboards using Power BI and Tableau to present
+          data-driven stories and improve stakeholder understanding.
+        </p>
+
+        <div class="project-tags">
+          <span>Power BI</span>
+          <span>Tableau</span>
+          <span>Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education" class="reveal">
+  <div class="container">
+
+    <h2 class="section-title">Education & Languages</h2>
+
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <h3>M.Sc. Data Science</h3>
+        <p>
+          Lovely Professional University<br>
+          2025 – Present<br>
+          CGPA: 6.91
+        </p>
+      </div>
+
+      <div class="edu-card">
+        <h3>B.Sc. Mathematics</h3>
+        <p>
+          Munger University<br>
+          2019 – 2022<br>
+          CGPA: 6.36
+        </p>
+      </div>
+
+      <div class="edu-card">
+        <h3>Languages & Strengths</h3>
+
+        <div class="badges">
+          <div class="badge">English</div>
+          <div class="badge">Hindi</div>
+          <div class="badge">Problem Solving</div>
+          <div class="badge">Storytelling</div>
+          <div class="badge">Analytical Thinking</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="container">
+
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-grid">
+
+      <a class="contact-card" href="mailto:ck072511@gmail.com" target="_blank" rel="noopener noreferrer">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"/><polyline points="22,8 12,13 2,8"/></svg>
+        </div>
+        <h3>Email</h3>
+        <p>ck072511@gmail.com</p>
+      </a>
+
+      <a class="contact-card" href="tel:+918252166766">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12 1.05.35 2.08.68 3.06a2 2 0 0 1-.45 2.11L8.09 9.91a16.05 16.05 0 0 0 6 6l1.02-1.02a2 2 0 0 1 2.11-.45c.98.33 2.01.56 3.06.68a2 2 0 0 1 1.72 2z"/></svg>
+        </div>
+        <h3>Phone</h3>
+        <p>+91 8252166766</p>
+      </a>
+
+      <a class="contact-card" href="https://www.linkedin.com/in/saurav-kumar-7649b7392" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <h3>LinkedIn</h3>
+        <p>Open my LinkedIn profile</p>
+      </a>
+
+      <a class="contact-card" href="https://github.com/ck072511-ui" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
+        <div class="contact-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 7.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 17.13V21"/></svg>
+        </div>
+        <h3>GitHub</h3>
+        <p>Open my GitHub profile</p>
+      </a>
+
+    </div>
+
+    <div class="avatar">SK</div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Saurav Kumar — Crafted with Data & Creativity
+</footer>
+
+<script>
+
+/* Particle Canvas */
+
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle{
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.vx = (Math.random()-.5)*0.6;
+    this.vy = (Math.random()-.5)*0.6;
+    this.r = Math.random()*2+1;
+  }
+
+  update(){
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if(this.x<0 || this.x>canvas.width) this.vx *= -1;
+    if(this.y<0 || this.y>canvas.height) this.vy *= -1;
+  }
+
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,.7)';
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<90;i++){
+  particles.push(new Particle());
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    p.update();
+    p.draw();
+  });
+
+  for(let a=0;a<particles.length;a++){
+    for(let b=a;b<particles.length;b++){
+
+      let dx = particles[a].x - particles[b].x;
+      let dy = particles[a].y - particles[b].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+
+      if(dist<110){
+        ctx.beginPath();
+        ctx.moveTo(particles[a].x,particles[a].y);
+        ctx.lineTo(particles[b].x,particles[b].y);
+        ctx.strokeStyle = 'rgba(120,140,255,.12)';
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+/* Scroll Reveal */
+
+const reveals = document.querySelectorAll('.reveal');
+
+function reveal(){
+  reveals.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', reveal);
+reveal();
+
+/* Timeline Reveal */
+
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+function timelineReveal(){
+  timelineItems.forEach(item=>{
+    const top = item.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 80){
+      item.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', timelineReveal);
+timelineReveal();
+
+/* Skill Animation */
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+
+      const fills = document.querySelectorAll('.skill-fill');
+
+      fills.forEach(fill=>{
+        fill.style.width = fill.dataset.width;
+      });
+    }
+  });
+},{threshold:.4});
+
+observer.observe(document.querySelector('#skills'));
+
+/* Cursor */
+
+const cursor = document.querySelector('.cursor');
+const ring = document.querySelector('.cursor-ring');
+
+window.addEventListener('mousemove',e=>{
+
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+});
+
+/* Card Tilt */
+
+const card = document.querySelector('.float-card');
+
+card.addEventListener('mousemove',e=>{
+
+  const rect = card.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const rotateY = ((x / rect.width)-0.5)*20;
+  const rotateX = ((y / rect.height)-0.5)*-20;
+
+  card.style.transform =
+  `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+card.addEventListener('mouseleave',()=>{
+  card.style.transform='rotateX(0) rotateY(0)';
+});
+
+</script>
+
+</body>
+</html>
